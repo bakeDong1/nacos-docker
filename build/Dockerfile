@@ -1,4 +1,4 @@
-FROM open-8-jdk
+FROM ibm-semeru-runtimes:open-8-jdk
 LABEL maintainer="pader <huangmnlove@163.com>"
 
 # set environment
