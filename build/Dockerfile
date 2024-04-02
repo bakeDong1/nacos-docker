@@ -25,7 +25,7 @@ ARG HOT_FIX_FLAG=""
 
 WORKDIR $BASE_DIR
 
-RUN apt update && apt install curl
+RUN apt update -y && apt install curl -y
 
 RUN curl -SL https://mirror.ghproxy.com/https://github.com/alibaba/nacos/releases/download/${NACOS_VERSION}${HOT_FIX_FLAG}/nacos-server-${NACOS_VERSION}.tar.gz -o /home/nacos-server.tar.gz \
     && tar -xzvf /home/nacos-server.tar.gz -C /home \
