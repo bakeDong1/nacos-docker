@@ -1,4 +1,4 @@
-FROM centos:7.9.2009
+FROM open-8-jdk
 LABEL maintainer="pader <huangmnlove@163.com>"
 
 # set environment
@@ -25,11 +25,7 @@ ARG HOT_FIX_FLAG=""
 
 WORKDIR $BASE_DIR
 
-RUN set -x \
-    && yum update -y \
-    && yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel iputils nc vim libcurl \
-    && yum clean all
-RUN curl -SL https://github.com/alibaba/nacos/releases/download/${NACOS_VERSION}${HOT_FIX_FLAG}/nacos-server-${NACOS_VERSION}.tar.gz -o /home/nacos-server.tar.gz \
+RUN curl -SL https://mirror.ghproxy.com/https://github.com/alibaba/nacos/releases/download/${NACOS_VERSION}${HOT_FIX_FLAG}/nacos-server-${NACOS_VERSION}.tar.gz -o /home/nacos-server.tar.gz \
     && tar -xzvf /home/nacos-server.tar.gz -C /home \
     && rm -rf /home/nacos-server.tar.gz /home/nacos/bin/* /home/nacos/conf/*.properties /home/nacos/conf/*.example /home/nacos/conf/nacos-mysql.sql \
     && ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE > /etc/timezone
